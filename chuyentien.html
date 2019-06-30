@@ -2,45 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>chuyentien</title>
+    <title>Converse Currency</title>
 </head>
-<body>
-input: <input type="text" id="gt1">
-
-from: <select id="select1">
-    <option value="1">USD</option>
-    <option value="23000">VND</option>
-</select>
-to: <select id="select2">
-    <option value="1">USD</option>
-    <option value="23000">VND</option>
-</select>
-
-output: <button type="button" onclick="chuyentien()">Convert</button>
-
-<div id="result"></div>
-
-
-<script>
-    function chuyentien() {
-        let number = Number(document.getElementById("gt1").value);
-        let a = Number(document.getElementById("select1").value);
-        let b = Number(document.getElementById("select2").value);
-        let vnd = number * 23000;
-        let usd = number/23000;
-        if (a === b) {
-            alert("Moi ban chon lai!");
-        }
-        if (a === 1 && b === 23000) {
-            document.getElementById("result").innerHTML="Result: "+vnd;
-
-        }
-        if (a === 23000 && b === 1){
-            document.getElementById("result").innerHTML="Result: "+usd;
-        }
-
+<style>
+    #convert{
+        color:yellow;
+        background-color: purple;
+        width: 60px;
+        height: 30px;
+        border:1px solid yellow;
+        border-radius: 25px;
     }
-</script>
 
+</style>
+<body>
+<form action="">
+    <fieldset>
+        <legend>Converse Currency</legend>
+        <table>
+
+            <tr>
+                <th>Amount</th>
+                <th>From Currency</th>
+                <th>To Currency</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="inputValue" value="1"></td>
+                <td><select id="select1">
+                    <option value="usd">USD</option>
+                    <option value="vnd">VND</option>
+                </select></td>
+                <td><select id="select2">
+                    <option value="usd">USD</option>
+                    <option value="vnd">VND</option>
+                </select></td>
+                <td>
+                    <button type="button" id="convert" onclick="changeMoney()">Convert</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"><p id="result"></p></td>
+            </tr>
+
+        </table>
+    </fieldset>
+    <script>
+        function changeMoney() {
+            let number = Number(document.getElementById("inputValue").value);
+            let chooseFirst = document.getElementById("select1").value;
+            let chooseSecond = document.getElementById("select2").value;
+            let ValueOut = document.getElementById("result");
+            let VNMoney = number * 23000;
+            let USDMoney = number / 23000;
+            if (chooseFirst === chooseSecond) {
+                ValueOut.innerHTML = "Result: " + number;
+            } else if (chooseFirst === 'usd') {
+                ValueOut.innerHTML = "Result: " + VNMoney;
+            } else {
+                ValueOut.innerHTML = "Result: " + USDMoney;
+            }
+        }
+
+
+    </script>
+</form>
 </body>
 </html>
