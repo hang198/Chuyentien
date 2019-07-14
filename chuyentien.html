@@ -5,12 +5,12 @@
     <title>Converse Currency</title>
 </head>
 <style>
-    #convert{
-        color:yellow;
+    #convert {
+        color: yellow;
         background-color: purple;
         width: 60px;
         height: 30px;
-        border:1px solid yellow;
+        border: 1px solid yellow;
         border-radius: 25px;
     }
 
@@ -24,42 +24,46 @@
             <tr>
                 <th>Amount</th>
                 <th>From Currency</th>
-                <th>To Currency</th>
+                <th>ToCurrency</th>
             </tr>
             <tr>
-                <td><input type="text" id="inputValue" value="1"></td>
-                <td><select id="select1">
-                    <option value="usd">USD</option>
-                    <option value="vnd">VND</option>
-                </select></td>
-                <td><select id="select2">
-                    <option value="usd">USD</option>
-                    <option value="vnd">VND</option>
-                </select></td>
+                <td><input id="valueInput" type="text"></td>
                 <td>
-                    <button type="button" id="convert" onclick="changeMoney()">Convert</button>
+                    <select id="chooseFirst">
+                        <option value="VND">VietNam</option>
+                        <option value="USD">USD</option>
+                    </select>
+                </td>
+                <td>
+                    <select id="chooseSecond">
+                        <option value="VND">VietNam</option>
+                        <option value="USD">USD</option>
+                    </select>
+                </td>
+                <td>
+                    <button onclick="changeMoney()" type="button" id="convert">Convert</button>
                 </td>
             </tr>
             <tr>
-                <td colspan="3"><p id="result"></p></td>
+                <td colspan="4"><span id="result"></span></td>
             </tr>
 
         </table>
     </fieldset>
     <script>
         function changeMoney() {
-            let number = Number(document.getElementById("inputValue").value);
-            let chooseFirst = document.getElementById("select1").value;
-            let chooseSecond = document.getElementById("select2").value;
-            let ValueOut = document.getElementById("result");
-            let VNMoney = number * 23000;
-            let USDMoney = number / 23000;
+            let valueInput = Number(document.getElementById('valueInput').value);
+            let chooseFirst = document.getElementById('chooseFirst').value;
+            let chooseSecond = document.getElementById('chooseSecond').value;
+            let valueOut = document.getElementById('result');
+            let convertVnd = valueInput * 23000;
+            let convertUsd = valueInput / 23000;
             if (chooseFirst === chooseSecond) {
-                ValueOut.innerHTML = "Result: " + number;
-            } else if (chooseFirst === 'usd') {
-                ValueOut.innerHTML = "Result: " + VNMoney;
+                valueOut.innerHTML = "Result: " + valueInput;
+            } else if (chooseFirst === 'VND') {
+                valueOut.innerHTML = "Result: " + convertUsd;
             } else {
-                ValueOut.innerHTML = "Result: " + USDMoney;
+                valueOut.innerHTML = "Result: " + convertVnd;
             }
         }
 
